@@ -6,40 +6,40 @@ using Toggle.Net.Tests.Stubs;
 
 namespace Toggle.Net.Tests.TextFile.WithParameters
 {
-	public class SingleParameterTest
-	{
-		[Test]
-		public void ShouldBeEnabled()
-		{
-			var content = new[]
-			{
-				"someflag=ParameterSpecification",
-				"someflag.ParameterSpecification." + SpecificationWithParameter.ParameterName + "=true"
-			};
-			var mappings = new DefaultSpecificationMappings();
-			mappings.AddMapping("parameterspecification", new SpecificationWithParameter());
-			var fileProvider = new FileParser(new FileReaderStub(content), mappings);
-			var toggleChecker = new ToggleConfiguration(fileProvider).Create();
+    public class SingleParameterTest
+    {
+        [Test]
+        public void ShouldBeEnabled()
+        {
+            var content = new[]
+            {
+                "someflag=ParameterSpecification",
+                "someflag.ParameterSpecification." + SpecificationWithParameter.ParameterName + "=true"
+            };
+            var mappings = new DefaultSpecificationMappings();
+            mappings.AddMapping("parameterspecification", new SpecificationWithParameter());
+            var fileProvider = new FileParser(new FileReaderStub(content), mappings);
+            var toggleChecker = new ToggleConfiguration(fileProvider).Create();
 
-			toggleChecker.IsEnabled("someflag")
-				.Should().Be.True();
-		}
+            toggleChecker.IsEnabled("someflag")
+                .Should().Be.True();
+        }
 
-		[Test]
-		public void ShouldBeDisabled()
-		{
-			var content = new[]
-			{
-				"someflag=ParameterSpecification",
-				"someflag.ParameterSpecification." + SpecificationWithParameter.ParameterName + "=false"
-			};
-			var mappings = new DefaultSpecificationMappings();
-			mappings.AddMapping("parameterspecification", new SpecificationWithParameter());
-			var fileProvider = new FileParser(new FileReaderStub(content), mappings);
-			var toggleChecker = new ToggleConfiguration(fileProvider).Create();
+        [Test]
+        public void ShouldBeDisabled()
+        {
+            var content = new[]
+            {
+                "someflag=ParameterSpecification",
+                "someflag.ParameterSpecification." + SpecificationWithParameter.ParameterName + "=false"
+            };
+            var mappings = new DefaultSpecificationMappings();
+            mappings.AddMapping("parameterspecification", new SpecificationWithParameter());
+            var fileProvider = new FileParser(new FileReaderStub(content), mappings);
+            var toggleChecker = new ToggleConfiguration(fileProvider).Create();
 
-			toggleChecker.IsEnabled("someflag")
-				.Should().Be.False();
-		} 
-	}
+            toggleChecker.IsEnabled("someflag")
+                .Should().Be.False();
+        }
+    }
 }

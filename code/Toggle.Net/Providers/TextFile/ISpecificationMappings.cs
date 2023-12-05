@@ -3,8 +3,8 @@ using Toggle.Net.Specifications;
 
 namespace Toggle.Net.Providers.TextFile
 {
-	public interface ISpecificationMappings
-	{
-		IDictionary<string, IToggleSpecification> NameSpecificationMappings();
-	}
+    public interface ISpecificationMappings
+    {
+        IDictionary<string, IToggleSpecification> NameSpecificationMappings();
+    }
 }

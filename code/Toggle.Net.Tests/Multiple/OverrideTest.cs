@@ -20,12 +20,14 @@ namespace Toggle.Net.Tests.Multiple
             {
                 "someflag=true"
             };
-            new ToggleConfiguration(new FileParser(new FileReaderStub(contentLowPrio), new DefaultSpecificationMappings()))
-                .AddFeatureProviderFactoryWithHigherPriority(new FileParser(new FileReaderStub(contentHighPrio), new DefaultSpecificationMappings()))
+            new ToggleConfiguration(new FileParser(new FileReaderStub(contentLowPrio),
+                    new DefaultSpecificationMappings()))
+                .AddFeatureProviderFactoryWithHigherPriority(new FileParser(new FileReaderStub(contentHighPrio),
+                    new DefaultSpecificationMappings()))
                 .Create().IsEnabled("someflag")
                 .Should().Be.True();
         }
-        
+
         [Test]
         public void ShouldUseLowPrio()
         {
@@ -37,12 +39,14 @@ namespace Toggle.Net.Tests.Multiple
             {
                 "someflag2=false"
             };
-            new ToggleConfiguration(new FileParser(new FileReaderStub(contentLowPrio), new DefaultSpecificationMappings()))
-                .AddFeatureProviderFactoryWithHigherPriority(new FileParser(new FileReaderStub(contentHighPrio), new DefaultSpecificationMappings()))
+            new ToggleConfiguration(new FileParser(new FileReaderStub(contentLowPrio),
+                    new DefaultSpecificationMappings()))
+                .AddFeatureProviderFactoryWithHigherPriority(new FileParser(new FileReaderStub(contentHighPrio),
+                    new DefaultSpecificationMappings()))
                 .Create().IsEnabled("someflag")
                 .Should().Be.True();
         }
-        
+
         [Test]
         public void ShouldUseDefaultValue()
         {
@@ -54,8 +58,10 @@ namespace Toggle.Net.Tests.Multiple
             {
                 "someflag2=false"
             };
-            new ToggleConfiguration(new FileParser(new FileReaderStub(contentLowPrio), new DefaultSpecificationMappings()))
-                .AddFeatureProviderFactoryWithHigherPriority(new FileParser(new FileReaderStub(contentHighPrio), new DefaultSpecificationMappings()))
+            new ToggleConfiguration(new FileParser(new FileReaderStub(contentLowPrio),
+                    new DefaultSpecificationMappings()))
+                .AddFeatureProviderFactoryWithHigherPriority(new FileParser(new FileReaderStub(contentHighPrio),
+                    new DefaultSpecificationMappings()))
                 .SetDefaultSpecification(new BoolSpecification(true))
                 .Create().IsEnabled("someflag")
                 .Should().Be.True();

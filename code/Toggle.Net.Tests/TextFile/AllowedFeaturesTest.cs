@@ -16,10 +16,11 @@ namespace Toggle.Net.Tests.TextFile
                 "someflag=true"
             };
             Assert.Throws<IncorrectTextFileException>(() =>
-                    new ToggleConfiguration(new FileParser(new FileReaderStub(content), new DefaultSpecificationMappings())
-                    {
-                        AllowedFeatures = new[]{"someflag2"}
-                    }).Create()
+                    new ToggleConfiguration(
+                        new FileParser(new FileReaderStub(content), new DefaultSpecificationMappings())
+                        {
+                            AllowedFeatures = new[] { "someflag2" }
+                        }).Create()
                 ).ToString()
                 .Should().Contain(string.Format(FileParser.NotAllowedFeature, "someflag"));
         }
@@ -32,12 +33,12 @@ namespace Toggle.Net.Tests.TextFile
                 "someflag1=false"
             };
             new ToggleConfiguration(new FileParser(new FileReaderStub(content), new DefaultSpecificationMappings())
-            {
-                AllowedFeatures = new[]{"someflag1", "someflag2"}
-            }).Create().IsEnabled("someflag1")
+                {
+                    AllowedFeatures = new[] { "someflag1", "someflag2" }
+                }).Create().IsEnabled("someflag1")
                 .Should().Be.False();
         }
-        
+
         [Test]
         public void ShouldNotCareAboutCasing()
         {
@@ -47,7 +48,7 @@ namespace Toggle.Net.Tests.TextFile
             };
             new ToggleConfiguration(new FileParser(new FileReaderStub(content), new DefaultSpecificationMappings())
                 {
-                    AllowedFeatures = new[]{"SoMeFLag"}
+                    AllowedFeatures = new[] { "SoMeFLag" }
                 }).Create().IsEnabled("someflag")
                 .Should().Be.True();
         }
@@ -61,7 +62,7 @@ namespace Toggle.Net.Tests.TextFile
             };
             new ToggleConfiguration(new FileParser(new FileReaderStub(content), new DefaultSpecificationMappings())
                 {
-                    AllowedFeatures = new[]{"                someflag          "}
+                    AllowedFeatures = new[] { "                someflag          " }
                 }).Create().IsEnabled("someflag")
                 .Should().Be.True();
         }
