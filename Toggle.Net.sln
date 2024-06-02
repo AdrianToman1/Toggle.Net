@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{ECD072CC-1313-4A54-874B-87B284E6F827}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toggle.Net", "src\Toggle.Net\Toggle.Net.csproj", "{9B5882CC-8D12-4A19-B49E-14B61FB40B27}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toggle.Net.Tests", "tests\Toggle.Net.Tests\Toggle.Net.Tests.csproj", "{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B5882CC-8D12-4A19-B49E-14B61FB40B27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5882CC-8D12-4A19-B49E-14B61FB40B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5882CC-8D12-4A19-B49E-14B61FB40B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5882CC-8D12-4A19-B49E-14B61FB40B27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {420360CB-D8EE-4BBF-8BA1-9C5BC935E051}
+	EndGlobalSection
+EndGlobal
