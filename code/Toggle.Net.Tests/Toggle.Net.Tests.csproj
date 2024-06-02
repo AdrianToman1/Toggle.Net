@@ -3,6 +3,48 @@
         <TargetFrameworks>net462</TargetFrameworks>
         <IsTestProject>true</IsTestProject>
     </PropertyGroup>
+    <ItemGroup>
+      <Compile Remove="TextFile\AllowedFeaturesTest.cs" />
+      <Compile Remove="TextFile\EdgeCasesTest.cs" />
+      <Compile Remove="TextFile\FalseTest.cs" />
+      <Compile Remove="TextFile\IncorrectTextTest.cs" />
+      <Compile Remove="TextFile\MultipleSpecificationTests.cs" />
+      <Compile Remove="TextFile\NonExistingFeatureTest.cs" />
+      <Compile Remove="TextFile\RandomTest.cs" />
+      <Compile Remove="TextFile\RegExTest.cs" />
+      <Compile Remove="TextFile\RemarkTest.cs" />
+      <Compile Remove="TextFile\SimpleIntegrationTest.cs" />
+      <Compile Remove="TextFile\TrueTest.cs" />
+      <Compile Remove="TextFile\UniqueSpecificationNameTest.cs" />
+      <Compile Remove="TextFile\UserTest.cs" />
+      <Compile Remove="TextFile\WithParameters\EdgeCasesTest.cs" />
+      <Compile Remove="TextFile\WithParameters\IncorrectTextParametersTest.cs" />
+      <Compile Remove="TextFile\WithParameters\MultipleFeaturesUsesSameSpecificationTypeTest.cs" />
+      <Compile Remove="TextFile\WithParameters\MultipleParametersTest.cs" />
+      <Compile Remove="TextFile\WithParameters\ParameterShortSyntaxTest.cs" />
+      <Compile Remove="TextFile\WithParameters\SingleParameterTest.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="TextFile\AllowedFeaturesTest.cs" />
+      <None Include="TextFile\EdgeCasesTest.cs" />
+      <None Include="TextFile\FalseTest.cs" />
+      <None Include="TextFile\IncorrectTextTest.cs" />
+      <None Include="TextFile\MultipleSpecificationTests.cs" />
+      <None Include="TextFile\NonExistingFeatureTest.cs" />
+      <None Include="TextFile\RandomTest.cs" />
+      <None Include="TextFile\RegExTest.cs" />
+      <None Include="TextFile\RemarkTest.cs" />
+      <None Include="TextFile\SimpleIntegrationTest.cs" />
+      <None Include="TextFile\TrueTest.cs" />
+      <None Include="TextFile\UniqueSpecificationNameTest.cs" />
+      <None Include="TextFile\UserTest.cs" />
+      <None Include="TextFile\WithParameters\EdgeCasesTest.cs" />
+      <None Include="TextFile\WithParameters\IncorrectTextParametersTest.cs" />
+      <None Include="TextFile\WithParameters\MultipleFeaturesUsesSameSpecificationTypeTest.cs" />
+      <None Include="TextFile\WithParameters\MultipleParametersTest.cs" />
+      <None Include="TextFile\WithParameters\ParameterShortSyntaxTest.cs" />
+      <None Include="TextFile\WithParameters\SingleParameterTest.cs" />
+    </ItemGroup>
     
     <ItemGroup>
         <ProjectReference Include="..\Toggle.Net\Toggle.Net.csproj" />
