@@ -6,14 +6,11 @@ namespace Toggle.Net.Internal
 {
     public class ToggleChecker : IToggleChecker
     {
-        private readonly IToggleSpecification _defaultToggleSpecification;
         private readonly IFeatureProvider _featureProvider;
 
-        internal ToggleChecker(IFeatureProvider featureProviders,
-            IToggleSpecification defaultToggleSpecification)
+        internal ToggleChecker(IFeatureProvider featureProviders)
         {
             _featureProvider = featureProviders;
-            _defaultToggleSpecification = defaultToggleSpecification;
         }
 
         public bool IsEnabled(string toggleName)
@@ -24,7 +21,8 @@ namespace Toggle.Net.Internal
                 return feature.IsEnabled();
             }
 
-            return _defaultToggleSpecification.IsEnabled(new Dictionary<string, string>());
+            // TODO: Add a setting to control if unknown toggleNames should be ignored or an exception thrown.
+            return false;
         }
     }
 }
