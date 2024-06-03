@@ -16,10 +16,11 @@ namespace Toggle.Net.Specifications
         public const string MustBeBetween0And100 = "RandomSpecification parameter '" + percentParameter +
                                                    "' for feature '{0}' must be between 0 and 100.";
 
-        public bool IsEnabled(string currentUser, IDictionary<string, string> parameters)
+        public bool IsEnabled(IDictionary<string, string> parameters)
         {
             var percent = Convert.ToInt32(parameters[percentParameter]);
-            var userHash = currentUser.GetHashCode();
+//            var userHash = currentUser.GetHashCode();
+            var userHash = "temp".GetHashCode();
             var userHash1To100 = Math.Abs(userHash % 100);
 
             return percent > userHash1To100;

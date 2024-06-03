@@ -15,10 +15,10 @@ namespace Toggle.Net.Internal
             AddSpecification(specification);
         }
 
-        public bool IsEnabled(string currentUser)
+        public bool IsEnabled()
         {
             return _specificationData.Keys.All(specification =>
-                specification.IsEnabled(currentUser, _specificationData[specification]));
+                specification.IsEnabled(_specificationData[specification]));
         }
 
         public void AddSpecification(IToggleSpecification specification)

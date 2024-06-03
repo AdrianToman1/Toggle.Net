@@ -11,7 +11,7 @@ namespace Toggle.Net.Specifications
             _value = value;
         }
 
-        public bool IsEnabled(string currentUser, IDictionary<string, string> parameters)
+        public bool IsEnabled(IDictionary<string, string> parameters)
         {
             return _value;
         }

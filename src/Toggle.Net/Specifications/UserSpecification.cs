@@ -18,8 +18,10 @@ namespace Toggle.Net.Specifications
         private const string idsParameter = "ids";
         private const char delimiter = ',';
 
-        public bool IsEnabled(string currentUser, IDictionary<string, string> parameters)
+        public bool IsEnabled(IDictionary<string, string> parameters)
         {
+            var currentUser = "temp";
+
             var currentUserContainsDelimiter = currentUser.Contains(delimiter);
             var parameterValues = parameters[idsParameter];
 

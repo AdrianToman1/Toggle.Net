@@ -13,9 +13,8 @@ namespace Toggle.Net.Specifications
         /// <summary>
         ///     Is the <see cref="Feature" /> enabled or not?
         /// </summary>
-        /// <param name="currentUser"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        bool IsEnabled(string currentUser, IDictionary<string, string> parameters);
+        bool IsEnabled(IDictionary<string, string> parameters);
     }
 }

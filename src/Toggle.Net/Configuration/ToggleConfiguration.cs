@@ -31,7 +31,7 @@ namespace Toggle.Net.Configuration
                 _defaultToggleSpecification = new BoolSpecification(false);
 
             var featureProvider = _featureProviderFactory.Create();
-            return new ToggleChecker(featureProvider, _defaultToggleSpecification, _userProvider);
+            return new ToggleChecker(featureProvider, _defaultToggleSpecification);
         }
     }
 }
