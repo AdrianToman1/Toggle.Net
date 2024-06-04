@@ -10,7 +10,7 @@ namespace Toggle.Net.Specifications
     ///     it is treated as a list.
     ///     If not, a single string as currentUser is expected.
     /// </summary>
-    public class UserSpecification : IToggleSpecification, IToggleSpecificationValidator
+    public class UserSpecification : IToggleSpecification
     {
         public const string MustHaveDeclaredIds =
             "Missing UserSpecification parameter '" + idsParameter + "' for feature '{0}'.";
@@ -32,14 +32,6 @@ namespace Toggle.Net.Specifications
 
             var values = parameterValues.Split(delimiter);
             return values.Any(value => value.Trim().Equals(currentUser, StringComparison.OrdinalIgnoreCase));
-        }
-
-        public void Validate(string toggleName, IDictionary<string, string> parameters)
-        {
-            if (!parameters.Keys.Contains(idsParameter))
-            {
-                throw new InvalidSpecificationParameterException(string.Format(MustHaveDeclaredIds, toggleName));
-            }
         }
     }
 }

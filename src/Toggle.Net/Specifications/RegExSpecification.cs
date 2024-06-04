@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Toggle.Net.Specifications
 {
-    public class RegExSpecification : IToggleSpecification, IToggleSpecificationValidator
+    public class RegExSpecification : IToggleSpecification
     {
         private const string regExParameter = "pattern";
 
@@ -18,12 +18,6 @@ namespace Toggle.Net.Specifications
         public bool IsEnabled(IDictionary<string, string> parameters)
         {
             return _regex.IsMatch(parameters[regExParameter]);
-        }
-
-        public void Validate(string toggleName, IDictionary<string, string> parameters)
-        {
-            if (!parameters.ContainsKey(regExParameter))
-                throw new InvalidSpecificationParameterException(string.Format(MustDeclareRegexPattern, toggleName));
         }
     }
 }

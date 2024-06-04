@@ -32,16 +32,5 @@ namespace Toggle.Net.Internal
         {
             _specificationData[specification].Add(parameterName, parameterValue);
         }
-
-        public void Validate(string toggleName)
-        {
-            foreach (var specification in _specificationData)
-            {
-                if (specification.Key is IToggleSpecificationValidator specValidator)
-                {
-                    specValidator.Validate(toggleName, specification.Value);
-                }
-            }
-        }
     }
 }

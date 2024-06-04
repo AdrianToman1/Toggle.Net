@@ -15,9 +15,5 @@ namespace Toggle.Net.Tests.Stubs
                    bool.Parse(parameters[ParameterName2]) &&
                    bool.Parse(parameters[ParameterName3]);
         }
-
-        public void Validate(string toggleName, IDictionary<string, string> parameters)
-        {
-        }
     }
 }

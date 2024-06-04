@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Toggle.Net.Specifications
 {
-    public class RandomSpecification : IToggleSpecification, IToggleSpecificationValidator
+    public class RandomSpecification : IToggleSpecification
     {
         private const string percentParameter = "percent";
 
@@ -26,22 +26,23 @@ namespace Toggle.Net.Specifications
             return percent > userHash1To100;
         }
 
-        public void Validate(string toggleName, IDictionary<string, string> parameters)
-        {
-            if (!parameters.TryGetValue(percentParameter, out var parameterValue))
-            {
-                throw new InvalidSpecificationParameterException(string.Format(MustHaveDeclaredPercent, toggleName));
-            }
+        /// TODO: Reimplement via another mechanism
+        //public void Validate(string toggleName, IDictionary<string, string> parameters)
+        //{
+        //    if (!parameters.TryGetValue(percentParameter, out var parameterValue))
+        //    {
+        //        throw new InvalidSpecificationParameterException(string.Format(MustHaveDeclaredPercent, toggleName));
+        //    }
 
-            if (!int.TryParse(parameterValue, out var percent))
-            {
-                throw new InvalidSpecificationParameterException(string.Format(MustDeclaredPercentAsInt, toggleName));
-            }
+        //    if (!int.TryParse(parameterValue, out var percent))
+        //    {
+        //        throw new InvalidSpecificationParameterException(string.Format(MustDeclaredPercentAsInt, toggleName));
+        //    }
 
-            if (percent < 0 || percent > 100)
-            {
-                throw new InvalidSpecificationParameterException(string.Format(MustBeBetween0And100, toggleName));
-            }
-        }
+        //    if (percent < 0 || percent > 100)
+        //    {
+        //        throw new InvalidSpecificationParameterException(string.Format(MustBeBetween0And100, toggleName));
+        //    }
+        //}
     }
 }
