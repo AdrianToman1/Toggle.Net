@@ -18,7 +18,7 @@ namespace Toggle.Net.Internal
             var feature = _featureProvider.Get(toggleName);
             if (feature != null)
             {
-                return feature.IsEnabled();
+                return feature.IsEnabled;
             }
 
             // TODO: Add a setting to control if unknown toggleNames should be ignored or an exception thrown.

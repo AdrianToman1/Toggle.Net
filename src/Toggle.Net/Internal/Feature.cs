@@ -1,36 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Toggle.Net.Specifications;
-
-namespace Toggle.Net.Internal
+﻿namespace Toggle.Net.Internal
 {
+    /// <summary>
+    ///     The definition of a feature.
+    /// </summary>
     public class Feature
     {
-        private readonly IDictionary<IToggleSpecification, IDictionary<string, string>> _specificationData;
+        /// <summary>
+        ///     The name of the feature.
+        /// </summary>
+        public string Name { get; set; }
 
-        public Feature(IToggleSpecification specification)
-        {
-            _specificationData = new Dictionary<IToggleSpecification, IDictionary<string, string>>();
-            AddSpecification(specification);
-        }
-
-        public bool IsEnabled()
-        {
-            return _specificationData.Keys.All(specification =>
-                specification.IsEnabled(_specificationData[specification]));
-        }
-
-        public void AddSpecification(IToggleSpecification specification)
-        {
-            if (specification == null)
-                throw new ArgumentNullException(nameof(specification));
-            _specificationData.Add(specification, new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase));
-        }
-
-        public void AddParameter(IToggleSpecification specification, string parameterName, string parameterValue)
-        {
-            _specificationData[specification].Add(parameterName, parameterValue);
-        }
+        /// <summary>
+        ///     Whether the feature is enabled or not.
+        /// </summary>
+        public bool IsEnabled { get; set; }
     }
 }
