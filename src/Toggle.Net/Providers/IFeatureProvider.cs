@@ -1,20 +1,24 @@
-﻿using Toggle.Net.Internal;
+﻿using System.Collections.Generic;
+using Toggle.Net.Internal;
 
 namespace Toggle.Net.Providers
 {
     /// <summary>
-    ///     Gets features settings from the source
+    ///     A provider of features.
     /// </summary>
     public interface IFeatureProvider
     {
         /// <summary>
-        ///     Gets the feature from the repository.
-        ///     If not present, this method must return <code>null</code>.
+        ///     Retrieves the feature for a given name.
         /// </summary>
-        /// <param name="toggleName"></param>
-        /// <returns>
-        ///     <see cref="Feature" />
-        /// </returns>
+        /// <param name="toggleName">The name of the feature to retrieve the definition for.</param>
+        /// <returns>The feature's definition.</returns>
         Feature Get(string toggleName);
+
+        /// <summary>
+        ///     Retrieves all features.
+        /// </summary>
+        /// <returns>An enumerator which provides iteration over features.</returns>
+        IEnumerable<Feature> GetAllFeatures();
     }
 }
