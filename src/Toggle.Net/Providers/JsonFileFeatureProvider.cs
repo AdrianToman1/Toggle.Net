@@ -17,7 +17,8 @@ namespace Toggle.Net.Providers
         ///     Initializes a new instance of the <see cref="JsonFileFeatureProvider" /> class.
         /// </summary>
         /// <param name="fileReader">The file reader which provides JSON file contents.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="fileReader"/> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="fileReader" /> is null.</exception>
+        /// <exception cref="JsonFileFeatureProviderException">JSON provided by <paramref name="fileReader" /> is not valid.</exception>
         public JsonFileFeatureProvider(IFileReader fileReader)
         {
             if (fileReader == null)
@@ -33,7 +34,8 @@ namespace Toggle.Net.Providers
             }
             catch (Exception e)
             {
-                throw new JsonFileFeatureProviderException("An error occurred parsing JSON. See inner exception for details.", e);
+                throw new JsonFileFeatureProviderException(
+                    "An error occurred parsing JSON. See inner exception for details.", e);
             }
 
             foreach (var feature in features)

@@ -20,7 +20,8 @@ namespace Toggle.Net.Tests.Provider
         [TestCase("{testFeature")]
         public void Should_ThrowArgumentNullException_When_JsonInvalid(string json)
         {
-            Assert.Throws(typeof(JsonFileFeatureProviderException), () => new JsonFileFeatureProvider(GetMockFileReader(json)));
+            Assert.Throws(typeof(JsonFileFeatureProviderException),
+                () => new JsonFileFeatureProvider(GetMockFileReader(json)));
         }
 
         [Test]
@@ -104,7 +105,7 @@ namespace Toggle.Net.Tests.Provider
         [TestCase("\"true\"")]
         [TestCase("\"1\"")]
         [TestCase("1")]
-        [TestCase("[{ testFeature: true }]")] 
+        [TestCase("[{ testFeature: true }]")]
         [TestCase("{ testFeature: true }")]
         public void Should_SetFeatureIsEnabledFalse_When_FeatureValueInJsonIsNotBoolean(string value)
         {
