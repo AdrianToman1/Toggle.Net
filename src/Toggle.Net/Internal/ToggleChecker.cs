@@ -1,20 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Toggle.Net.Providers;
-using Toggle.Net.Specifications;
 
 namespace Toggle.Net.Internal
 {
+    /// <inheritdoc cref="IToggleChecker" />
     public class ToggleChecker : IToggleChecker
     {
         private readonly IFeatureProvider _featureProvider;
 
-        internal ToggleChecker(IFeatureProvider featureProviders)
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ToggleChecker" /> class.
+        /// </summary>
+        /// <param name="featureProvider">The feature provider to use.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="featureProvider" /> is null.</exception>
+        public ToggleChecker(IFeatureProvider featureProvider)
         {
-            _featureProvider = featureProviders;
+            _featureProvider = featureProvider ?? throw new ArgumentNullException(nameof(featureProvider));
         }
 
+        /// <inheritdoc />
         public bool IsEnabled(string toggleName)
         {
+            return IsEnabled<object>(toggleName, null);
+        }
+
+        /// <exception cref="ArgumentNullException"><paramref name="toggleName" /> is null.</exception>
+        /// <inheritdoc />
+        public bool IsEnabled<TContext>(string toggleName, TContext context)
+        {
+            if (toggleName == null)
+            {
+                throw new ArgumentNullException(nameof(toggleName));
+            }
+
             var feature = _featureProvider.Get(toggleName);
             if (feature != null)
             {
