@@ -6,8 +6,7 @@ using Toggle.Net.Internal;
 namespace Toggle.Net.Providers
 {
     /// <summary>
-    ///     A feature definition provider that pulls feature definitions from the .NET Core <see cref="IConfiguration" />
-    ///     system.
+    ///     A feature definition provider that pulls feature definitions from a JSON File.
     /// </summary>
     public class JsonFileFeatureProvider : IFeatureProvider
     {
@@ -51,10 +50,16 @@ namespace Toggle.Net.Providers
             }
         }
 
+        /// <exception cref="ArgumentNullException"><paramref name="toggleName"/> is null.</exception>
         /// <inheritdoc />
         public Feature Get(string toggleName)
         {
-            return _features[toggleName];
+            if (toggleName == null)
+            {
+                throw new ArgumentNullException(nameof(toggleName));
+            }
+
+            return _features.TryGetValue(toggleName, out var feature) ? feature : null;
         }
 
         /// <inheritdoc />

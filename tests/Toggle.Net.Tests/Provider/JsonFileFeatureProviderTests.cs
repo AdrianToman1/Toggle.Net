@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
@@ -66,7 +65,7 @@ namespace Toggle.Net.Tests.Provider
         }
 
         [Test]
-        public void Should_ThrowException_When_TryingToRetrieveUnknownFeature()
+        public void Should_ThrowArgumentNullException_When_ToggleNameIsNull()
         {
             // Arrange
             var json = @"
@@ -77,7 +76,26 @@ namespace Toggle.Net.Tests.Provider
             var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json));
 
             // Act & Assert
-            Assert.Throws(typeof(KeyNotFoundException), () => jsonFileFeatureProvider.Get("unknownFeature"));
+            Assert.Throws(typeof(ArgumentNullException), () => jsonFileFeatureProvider.Get(null));
+        }
+
+        [TestCase("")]
+        [TestCase("unknownFeature")]
+        public void Get_Should_ReturnNull_When_FeatureDoesNotExist(string toggleName)
+        {
+            // Arrange
+            var json = @"
+                {
+                    ""testFeature"": true
+                }";
+
+            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json));
+
+            // Act
+            var feature = jsonFileFeatureProvider.Get(toggleName);
+
+            // Assert
+            Assert.IsNull(feature);
         }
 
         [Test]
