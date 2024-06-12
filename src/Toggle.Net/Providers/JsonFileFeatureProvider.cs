@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using Toggle.Net.Internal;
 
 namespace Toggle.Net.Providers
 {

@@ -1,4 +1,4 @@
-﻿namespace Toggle.Net.Internal
+﻿namespace Toggle.Net
 {
     /// <summary>
     ///     The definition of a feature.

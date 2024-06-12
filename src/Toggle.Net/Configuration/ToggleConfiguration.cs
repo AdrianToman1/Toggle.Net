@@ -1,5 +1,4 @@
-﻿using Toggle.Net.Internal;
-using Toggle.Net.Providers;
+﻿using Toggle.Net.Providers;
 
 namespace Toggle.Net.Configuration
 {

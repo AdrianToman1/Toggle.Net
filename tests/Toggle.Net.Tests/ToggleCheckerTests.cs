@@ -1,10 +1,9 @@
 ﻿using System;
 using Moq;
 using NUnit.Framework;
-using Toggle.Net.Internal;
 using Toggle.Net.Providers;
 
-namespace Toggle.Net.Tests.Internal
+namespace Toggle.Net.Tests
 {
     public class ToggleCheckerTests
     {

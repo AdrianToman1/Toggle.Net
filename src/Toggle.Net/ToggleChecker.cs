@@ -1,7 +1,7 @@
 ﻿using System;
 using Toggle.Net.Providers;
 
-namespace Toggle.Net.Internal
+namespace Toggle.Net
 {
     /// <inheritdoc cref="IToggleChecker" />
     public class ToggleChecker : IToggleChecker
