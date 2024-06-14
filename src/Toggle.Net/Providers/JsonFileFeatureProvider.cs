@@ -12,23 +12,45 @@ namespace Toggle.Net.Providers
         private readonly IDictionary<string, Feature> _features = new Dictionary<string, Feature>();
 
         /// <summary>
+        ///    Initializes a new instance of the <see cref="JsonFileFeatureProvider" /> class.
+        /// </summary>
+        /// <param name="path">The path to the JSON file containing the feature definitions.</param>
+        /// <exception cref="ArgumentException"><paramref name="path" /> is whitespace or empty.</exception>
+        /// <exception cref="JsonFileFeatureProviderException">JSON within the file at <paramref name="path"/> is not valid.</exception>
+        public JsonFileFeatureProvider(string path) : this(new FileReader(), path)
+        {
+        }
+
+        /// <summary>
         ///     Initializes a new instance of the <see cref="JsonFileFeatureProvider" /> class.
         /// </summary>
-        /// <param name="fileReader">The file reader which provides JSON file contents.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="fileReader" /> is null.</exception>
+        /// <param name="fileReader">The file reader which reads the JSON file contents.</param>
+        /// <param name="path">The path to the JSON file containing the feature definitions.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="fileReader" /> or <paramref name="path" /> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="path" /> is whitespace or empty.</exception>
         /// <exception cref="JsonFileFeatureProviderException">JSON provided by <paramref name="fileReader" /> is not valid.</exception>
-        public JsonFileFeatureProvider(IFileReader fileReader)
+        public JsonFileFeatureProvider(IFileReader fileReader, string path)
         {
             if (fileReader == null)
             {
                 throw new ArgumentNullException(nameof(fileReader));
             }
 
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new ArgumentException($"{nameof(path)} can not be whitespace or empty", nameof(path));
+            }
+
             JObject features;
 
             try
             {
-                features = JObject.Parse(fileReader.ReadAllText("toggles.json"));
+                features = JObject.Parse(fileReader.ReadAllText(path));
             }
             catch (Exception e)
             {
@@ -49,7 +71,7 @@ namespace Toggle.Net.Providers
             }
         }
 
-        /// <exception cref="ArgumentNullException"><paramref name="toggleName"/> is null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="toggleName" /> is null.</exception>
         /// <inheritdoc />
         public Feature Get(string toggleName)
         {

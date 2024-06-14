@@ -8,29 +8,37 @@ namespace Toggle.Net.Tests.Provider
 {
     public class JsonFileFeatureProviderTests
     {
-        [Test]
-        public void Constructor_Should_ThrowArgumentNullException_WHen_FileReaderIsNull()
+        private const string testFilePath = "test.txt";
+
+        [TestCase(null, typeof(ArgumentNullException))]
+        [TestCase("", typeof(ArgumentException))]
+        [TestCase(" ", typeof(ArgumentException))]
+        public void Constructor_Should_ThrowException_When_PathIsNotValid(string path, Type exceptionType)
         {
-            Assert.Throws(typeof(ArgumentNullException), () => new JsonFileFeatureProvider(null));
+            Assert.Throws(exceptionType, () => new JsonFileFeatureProvider(path));
+            Assert.Throws(exceptionType, () => new JsonFileFeatureProvider(GetMockFileReader("{}").Object, path));
+        }
+
+        [Test]
+        public void Constructor_Should_ThrowArgumentNullException_When_FileReaderIsNull()
+        {
+            Assert.Throws(typeof(ArgumentNullException), () => new JsonFileFeatureProvider(null, testFilePath));
         }
 
         [TestCase(null)]
         [TestCase("")]
         [TestCase("{testFeature")]
-        public void Should_ThrowArgumentNullException_When_JsonInvalid(string json)
+        public void Should_ThrowJsonFileFeatureProviderException_When_JsonInvalid(string json)
         {
             Assert.Throws(typeof(JsonFileFeatureProviderException),
-                () => new JsonFileFeatureProvider(GetMockFileReader(json)));
+                () => new JsonFileFeatureProvider(GetMockFileReader(json).Object, testFilePath));
         }
 
         [Test]
         public void Should_HaveNoFeatures_When_JsonEmpty()
         {
-            // Arrange
-            var mock = GetMockFileReader("{}");
-
             // Act
-            var jsonFileFeatureProvider = new JsonFileFeatureProvider(mock);
+            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader("{}").Object, testFilePath);
 
             // Assert
             Assert.IsEmpty(jsonFileFeatureProvider.GetAllFeatures());
@@ -40,16 +48,20 @@ namespace Toggle.Net.Tests.Provider
         public void Should_LoadFeatures()
         {
             // Arrange
-            var json = @"
+            const string json = @"
                 {
                     ""enabledTestFeature"": true,
                     ""disabledTestFeature"": false,
                 }";
 
+            var mockFileReader = GetMockFileReader(json);
+
             // Act
-            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json));
+            var jsonFileFeatureProvider = new JsonFileFeatureProvider(mockFileReader.Object, testFilePath);
 
             // Assert
+            mockFileReader.Verify(fileReader => fileReader.ReadAllText(testFilePath));
+
             var features = jsonFileFeatureProvider.GetAllFeatures().ToList();
             Assert.AreEqual(2, features.Count);
 
@@ -68,12 +80,12 @@ namespace Toggle.Net.Tests.Provider
         public void Should_ThrowArgumentNullException_When_ToggleNameIsNull()
         {
             // Arrange
-            var json = @"
+            const string json = @"
                 {
                     ""testFeature"": true
                 }";
 
-            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json));
+            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json).Object, testFilePath);
 
             // Act & Assert
             Assert.Throws(typeof(ArgumentNullException), () => jsonFileFeatureProvider.Get(null));
@@ -84,12 +96,12 @@ namespace Toggle.Net.Tests.Provider
         public void Get_Should_ReturnNull_When_FeatureDoesNotExist(string toggleName)
         {
             // Arrange
-            var json = @"
+            const string json = @"
                 {
                     ""testFeature"": true
                 }";
 
-            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json));
+            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json).Object, testFilePath);
 
             // Act
             var feature = jsonFileFeatureProvider.Get(toggleName);
@@ -102,14 +114,14 @@ namespace Toggle.Net.Tests.Provider
         public void Should_IgnoreDuplicateFeatures()
         {
             // Arrange
-            var json = @"
+            const string json = @"
                 {
                     ""testFeature"": true,
                     ""testFeature"": false,
                 }";
 
             // Act
-            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json));
+            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json).Object, testFilePath);
 
             // Assert
             Assert.AreEqual(1, jsonFileFeatureProvider.GetAllFeatures().Count());
@@ -134,20 +146,20 @@ namespace Toggle.Net.Tests.Provider
                 }";
 
             // Act
-            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json));
+            var jsonFileFeatureProvider = new JsonFileFeatureProvider(GetMockFileReader(json).Object, testFilePath);
 
             // Assert
             var feature = jsonFileFeatureProvider.Get("testFeature");
             Assert.IsFalse(feature.IsEnabled);
         }
 
-        private IFileReader GetMockFileReader(string json)
+        private Mock<IFileReader> GetMockFileReader(string json)
         {
             var mock = new Mock<IFileReader>();
             mock.Setup(x => x.ReadAllText(It.IsAny<string>()))
                 .Returns((string s) => json);
 
-            return mock.Object;
+            return mock;
         }
     }
 }
