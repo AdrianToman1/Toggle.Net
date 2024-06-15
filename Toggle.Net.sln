@@ -12,6 +12,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toggle.Net", "src\Toggle.Ne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toggle.Net.Tests", "tests\Toggle.Net.Tests\Toggle.Net.Tests.csproj", "{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{26BFD39D-B49A-4F0D-984D-425098B1D4A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "examples\ConsoleApp\ConsoleApp.csproj", "{52C848FF-380E-47CF-BC0B-358F9A4FD7CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +30,16 @@ Global
 		{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C4CE5A3-FDF1-4775-87DA-8B5EECCE9144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C848FF-380E-47CF-BC0B-358F9A4FD7CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52C848FF-380E-47CF-BC0B-358F9A4FD7CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52C848FF-380E-47CF-BC0B-358F9A4FD7CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52C848FF-380E-47CF-BC0B-358F9A4FD7CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{52C848FF-380E-47CF-BC0B-358F9A4FD7CE} = {26BFD39D-B49A-4F0D-984D-425098B1D4A8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {420360CB-D8EE-4BBF-8BA1-9C5BC935E051}
