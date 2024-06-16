@@ -24,5 +24,8 @@ jobs:
     - name: Build solution
       run: msbuild Toggle.Net.sln -t:rebuild -property:Configuration=Release
 
-    - name: Run Tests
-      run: packages\\NUnit.ConsoleRunner.3.17.0\\tools\\nunit3-console.exe tests\\Toggle.Net.Tests\\bin\\Release\\net452\\Toggle.Net.Tests.dll
+    - name: Install NUnit.ConsoleRunner
+      run: nuget install NUnit.ConsoleRunner -Version 3.17.0 -DirectDownload -OutputDirectory .
+        
+    - name: Run UnitTests
+      run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe ./Toggle.Net.Tests/tests/Toggle.Net.Tests/bin/Release/net452/Toggle.Net.Tests.dll
