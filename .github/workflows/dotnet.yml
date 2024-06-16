@@ -25,4 +25,4 @@ jobs:
       run: msbuild Toggle.Net.sln -t:rebuild -property:Configuration=Release
 
     - name: Run Tests
-      run: vstest.console.exe Toggle.Net\tests\Toggle.Net.Tests\bin\Release\net452\Toggle.Net.Tests.dll
+      run: packages\NUnit.ConsoleRunner.3.17.0\tools\nunit3-console.exe tests\Toggle.Net.Tests\bin\Release\net452\Toggle.Net.Tests.dll
