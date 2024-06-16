@@ -12,13 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
-
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.5
   
-    - name: setup-msbuild
+    - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.1
 
     - name: Restore Packages
@@ -26,3 +23,6 @@ jobs:
 
     - name: Build solution
       run: msbuild Toggle.Net.sln -t:rebuild -property:Configuration=Release
+
+    - name: Run Tests
+      run: vstest.console.exe Toggle.Net\tests\Toggle.Net.Tests\bin\Release\net452\Toggle.Net.Tests.dll
