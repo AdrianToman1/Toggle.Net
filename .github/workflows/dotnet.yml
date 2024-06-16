@@ -7,7 +7,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - run: echo "Building version 2.3.0$env:GITHUB_RUN_NUMBER"
@@ -17,10 +17,10 @@ jobs:
       with:
         dotnet-version: 4.5.2
     - name: Restore dependencies
-      run: dotnet restore code\\Toggle.Net.sln
+      run: dotnet restore src\\Toggle.Net.sln
     - name: Build
-      run: dotnet build --configuration Release --no-restore code\\Toggle.Net.sln
+      run: dotnet build --configuration Release --no-restore src\\Toggle.Net.sln
     - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal code\\Toggle.Net.sln
+      run: dotnet test --configuration Release --no-build --verbosity normal src\\Toggle.Net.sln
     - name: NuGet Push
       run: dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
