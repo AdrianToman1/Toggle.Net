@@ -10,17 +10,19 @@ jobs:
     runs-on: windows-2019
 
     steps:
-    - run: echo "Building version 2.3.0$env:GITHUB_RUN_NUMBER"
     - uses: actions/checkout@v2
-    - name: Setup .NET 4.5.2
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 4.5.2
-    - name: Restore dependencies
-      run: dotnet restore src\\Toggle.Net.sln
-    - name: Build
-      run: dotnet build --configuration Release --no-restore src\\Toggle.Net.sln
-    - name: Test
-      run: dotnet test --configuration Release --no-build --verbosity normal src\\Toggle.Net.sln
-    - name: NuGet Push
-      run: dotnet nuget push "**/*.nupkg" --skip-duplicate --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+  
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Restore Packages
+      run: nuget restore src//Toggle.Net.sln
+
+    - name: Build solution
+      run: msbuild src//Toggle.Net.sln -t:rebuild -property:Configuration=Release
