@@ -22,7 +22,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
 
     - name: Restore Packages
-      run: nuget restore src//Toggle.Net.sln
+      run: nuget restore Toggle.Net.sln
 
     - name: Build solution
-      run: msbuild src//Toggle.Net.sln -t:rebuild -property:Configuration=Release
+      run: msbuild Toggle.Net.sln -t:rebuild -property:Configuration=Release
