@@ -10,7 +10,7 @@
     <PackageVersion>2.3.0$(GITHUB_RUN_NUMBER)</PackageVersion>
     <Version>2.3.0$(GITHUB_RUN_NUMBER)</Version>
     
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>net45</TargetFrameworks>
     <AssemblyOriginatorKeyFile>toggle.net.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
