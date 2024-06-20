@@ -12,12 +12,12 @@ namespace Toggle.Net.Providers
         private readonly IDictionary<string, Feature> _features = new Dictionary<string, Feature>();
 
         /// <summary>
-        ///    Initializes a new instance of the <see cref="JsonFileFeatureProvider" /> class.
+        ///     Initializes a new instance of the <see cref="JsonFileFeatureProvider" /> class.
         /// </summary>
         /// <param name="path">The path to the JSON file containing the feature definitions.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path" /> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="path" /> is whitespace or empty.</exception>
-        /// <exception cref="JsonFileFeatureProviderException">JSON within the file at <paramref name="path"/> is not valid.</exception>
+        /// <exception cref="JsonFileFeatureProviderException">JSON within the file at <paramref name="path" /> is not valid.</exception>
         public JsonFileFeatureProvider(string path) : this(new FileReader(), path)
         {
         }

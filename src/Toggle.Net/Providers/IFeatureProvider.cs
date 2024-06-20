@@ -11,7 +11,7 @@ namespace Toggle.Net.Providers
         ///     Retrieves the feature for a given name.
         /// </summary>
         /// <param name="toggleName">The name of the feature to retrieve the definition for.</param>
-        /// <returns>The feature's definition if <paramref name="toggleName"/> exists, otherwise <c>null</c>.</returns>
+        /// <returns>The feature's definition if <paramref name="toggleName" /> exists, otherwise <c>null</c>.</returns>
         Feature Get(string toggleName);
 
         /// <summary>

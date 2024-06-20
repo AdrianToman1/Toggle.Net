@@ -44,13 +44,14 @@ namespace Toggle.Net
         }
 
         /// <summary>
-        ///    Creates a new instance of <see cref="ToggleChecker" /> loading the features from a JSON file at <paramref name="path"/>.
+        ///     Creates a new instance of <see cref="ToggleChecker" /> loading the features from a JSON file at
+        ///     <paramref name="path" />.
         /// </summary>
         /// <param name="path">The path to the JSON file containing the feature definitions.</param>
         /// <returns>The new instance of <see cref="ToggleChecker" />.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="path" /> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="path" /> is whitespace or empty.</exception>
-        /// <exception cref="JsonFileFeatureProviderException">JSON within the file at <paramref name="path"/> is not valid.</exception>
+        /// <exception cref="JsonFileFeatureProviderException">JSON within the file at <paramref name="path" /> is not valid.</exception>
         public static IToggleChecker FromJsonFile(string path)
         {
             return new ToggleChecker(new JsonFileFeatureProvider(path));
