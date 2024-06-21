@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <PackageId>Toggle.Net</PackageId>
-    <Authors>Roger Kratz</Authors>
-    <Description>Feature flags for .net</Description>
-    <PackageProjectUrl>https://github.com/Teleopti/Toggle.Net</PackageProjectUrl>
-    <PackageLicenseUrl>http://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <Authors>Adrian Toman</Authors>
+    <Description>Feature flags for .Net</Description>
+    <PackageProjectUrl>https://github.com/AdrianToman1/Toggle.Net</PackageProjectUrl>
     <PackageTags>flag, toggle, bit, config, feature, branch</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>2.3.0$(GITHUB_RUN_NUMBER)</PackageVersion>
-    <Version>2.3.0$(GITHUB_RUN_NUMBER)</Version>
     
     <TargetFrameworks>net45</TargetFrameworks>
     <AssemblyOriginatorKeyFile>toggle.net.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
+    <RepositoryUrl>https://github.com/AdrianToman1/Toggle.Net</RepositoryUrl>
+    <Version>0.1.0$(GITHUB_RUN_NUMBER)</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
